@@ -4,10 +4,7 @@ steps:
   args: ["build", "-t", "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}", "."]
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
   entrypoint: gcloud
-  args:
-  - 'auth' 
-  - 'configure-docker'
-  - 'us-central1-docker.pkg.dev'
+  args: ["auth", "configure-docker", "us-central1-docker.pkg.dev"]
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ["docker", "run", "-dit", "--name", "apache_httpd_1", "-p", "8080:80", "us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd"]
 - name: "gcr.io/cloud-builders/kubectl"
