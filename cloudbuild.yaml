@@ -1,0 +1,7 @@
+steps:
+--name: "gcr.io."
+  args: ["docker", "build", "-t", "my-apache2", "."]
+--name:
+  args: ["docker", "run", "-dit", "--name", "my-running-app", "-p", "8080:80", "my-apache2"]
+--name: "kube"
+  args: [""]
