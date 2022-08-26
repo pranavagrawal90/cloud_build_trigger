@@ -14,7 +14,7 @@ steps:
   - 'run'
   - '--image'
   - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
-  - 'apache-httpd-container'
+  - 'apache-httpd-container2'
   - '--'
   - 'bash'  
   env:
