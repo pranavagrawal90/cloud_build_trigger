@@ -3,8 +3,9 @@ steps:
   id: 'Docker Build'
   args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}', '.']
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+  id: 'Docker Auth'
   entrypoint: gcloud
-  args: ["auth", "configure-docker", "us-central1-docker.pkg.dev"]
+  args: ["auth", "configure-docker", "${_LOCATION}-docker.pkg.dev"]
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ["docker", "run", "-dit", "--name", "apache_httpd_1", "-p", "8080:80", "us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd"]
 - name: "gcr.io/cloud-builders/kubectl"
@@ -12,7 +13,7 @@ steps:
   args:
   - 'run'
   - '--image'
-  - 'us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd'
+  - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
   - 'apache-httpd-container'
   - '--'
   - 'bash'  
@@ -20,8 +21,8 @@ steps:
   - 'CLOUDSDK_COMPUTE_REGION=us-west1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=pranav-gke-cluster'
 images:
-- 'us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd'
+- '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
 substitutions:
-  _LOCATION: us-central1
+  _LOCATION: us-west1
   _REPOSITORY: quickstart-docker-repo-pranav
   _IMAGE: apache_httpd
