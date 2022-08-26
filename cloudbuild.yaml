@@ -2,8 +2,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Docker Build'
   args: ["build", "-t", "us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd", "."]
-- images:
-  - 'us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd'
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ["docker", "run", "-dit", "--name", "apache_httpd_1", "-p", "8080:80", "us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd"]
 - name: "gcr.io/cloud-builders/kubectl"
@@ -18,3 +16,5 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=us-west1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=pranav-gke-cluster'
+images:
+- 'us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd'
