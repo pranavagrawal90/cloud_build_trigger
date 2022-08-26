@@ -22,6 +22,6 @@ steps:
 images:
 - 'us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd'
 substitutions:
-- _LOCATION: us-central1
-- _REPOSITORY: quickstart-docker-repo-pranav
-- _IMAGE: apache_httpd
+  _LOCATION: us-central1
+  _REPOSITORY: quickstart-docker-repo-pranav
+  _IMAGE: apache_httpd
