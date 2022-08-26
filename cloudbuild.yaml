@@ -1,7 +1,18 @@
 steps:
---name: "gcr.io."
-  args: ["docker", "build", "-t", "my-apache2", "."]
---name:
-  args: ["docker", "run", "-dit", "--name", "my-running-app", "-p", "8080:80", "my-apache2"]
---name: "kubernetes"
-  args: [""]
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Docker Build'
+  args: ["docker", "build", "-t", "us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd", "."]
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ["docker", "run", "-dit", "--name", "apache_httpd_1", "-p", "8080:80", "us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd"]
+- name: "gcr.io/cloud-builders/kubectl"
+  id: 'Push Image to Cluster'
+  args:
+  - 'run'
+  - '--image'
+  - 'us-central1-docker.pkg.dev/solution-kit-11/quickstart-docker-repo-pranav/apache_httpd'
+  - 'apache_httpd_container'
+  - '--'
+  - 'bash'  
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-west1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=pranav-gke-cluster'
